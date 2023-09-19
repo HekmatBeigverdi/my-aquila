@@ -21,18 +21,25 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.1",
-    "cssnano": "^6.0.1",
+    "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^9.0.3",
+    "sass-mq": "^5.0.1",
     "style-loader": "^1.2.1",
-    "uglifyjs-webpack-plugin": "^1.1.2",
-    "webpack": "^5.88.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "dependencies": {
+    "@babel/preset-react": "^7.10.4"
+  }
 }

@@ -37,3 +37,6 @@ img{
 .nav-item:hover .dropdown-menu:not(.show){
     display: block;
 }
+body{
+    font-family: 'Lato', sans-serif !important;
+}
