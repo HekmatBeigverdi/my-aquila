@@ -29,7 +29,7 @@ class Assets {
 
 	public function register_styles() {
 		// Register styles.
-		wp_register_style( 'bootstrap-css', AQUILA_BUILD_LIB_URI . '/css/bootstrap.min.css', [], false, 'all' );
+		wp_register_style( 'bootstrap-css', AQUILA_BUILD_LIB_URI  . '/css/bootstrap.min.css', [], false, 'all' );
 		wp_register_style( 'main-css', AQUILA_BUILD_CSS_URI . '/main.css', ['bootstrap-css'], filemtime( AQUILA_BUILD_CSS_DIR_PATH . '/main.css' ), 'all' );
 
 		// Enqueue Styles.
