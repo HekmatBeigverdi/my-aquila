@@ -5,7 +5,6 @@
 const path = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const OptimizeCssAssetsPlugin = require( 'css-minimizer-webpack-plugin' );
-const cssnano = require( 'cssnano' ); // https://cssnano.co/
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const TerserPlugin = require("terser-webpack-plugin");
@@ -20,6 +19,7 @@ const BUILD_DIR = path.resolve( __dirname, 'build' );
 const entry = {
     main: JS_DIR + '/main.js',
     single: JS_DIR + '/single.js',
+    editor: JS_DIR + '/editor.js'
 };
 
 const output = {

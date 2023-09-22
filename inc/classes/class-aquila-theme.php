@@ -70,11 +70,18 @@ class AQUILA_THEME {
 			'style'
 		]);
 
-		add_editor_style('');
 
 		add_theme_support('wp-block-styles');
 
 		add_theme_support('align-wide');
+
+		add_theme_support('editor-styles');
+
+		/**
+		 * Add Path to our custom editor style.
+		 */
+		add_editor_style('assets/build/css/editor.css');
+
 
 		global $content_width;
 
