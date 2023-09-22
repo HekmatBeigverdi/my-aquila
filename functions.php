@@ -49,4 +49,13 @@ function aquila_get_theme_instance() {
 	\AQUILA_THEME\Inc\AQUILA_THEME::get_instance();
 }
 
+
+
 aquila_get_theme_instance();
+
+function ebayads_remove_block_styles(){
+	wp_enqueue_style('wp-block-library');
+	wp_enqueue_style('wp-block-library-theme');
+	wp_enqueue_style('wp-block-style');
+}
+add_action('wp_enqueue_scripts', 'ebayads_remove_block_styles', 100);
