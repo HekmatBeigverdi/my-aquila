@@ -84,6 +84,9 @@ class AQUILA_THEME {
 		 */
 		add_editor_style('assets/build/css/editor.css');
 
+		//Remove the core block patterns
+		remove_theme_support('core-block-patterns');
+
 
 		global $content_width;
 
