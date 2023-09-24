@@ -65,6 +65,18 @@ console.warn('Hello People!!!');
 
 /***/ }),
 
+/***/ "./src/img/patterns/cover.png":
+/*!************************************!*\
+  !*** ./src/img/patterns/cover.png ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("../../src/img/patterns/cover.png");
+
+/***/ }),
+
 /***/ "./src/sass/main.scss":
 /*!****************************!*\
   !*** ./src/sass/main.scss ***!
@@ -157,10 +169,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/main.scss */ "./src/sass/main.scss");
 /* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ "./src/js/clock/index.js");
 /* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_clock__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _img_patterns_cover_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../img/patterns/cover.png */ "./src/img/patterns/cover.png");
 console.warn('Hello People!!!');
 // main.js
 
 // Styles
+
+
+
+// Images
 
 
 }();

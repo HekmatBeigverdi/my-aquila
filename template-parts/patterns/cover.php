@@ -1,23 +1,24 @@
 <?php
 /**
- * Cover block pattern template
+ * Cover Block Patterns Template
  *
  * @package aquila
  */
+
 ?>
 
-<!-- wp:cover {"url":"http://localhost/aquila/wp-content/uploads/2023/09/screenshot-1.png","id":1835,"dimRatio":50,"align":"full","layout":{"type":"constrained"}} -->
-<div class="wp-block-cover alignfull"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><img class="wp-block-cover__image-background wp-image-1835" alt="" src="http://localhost/aquila/wp-content/uploads/2023/09/screenshot-1.png" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":1,"align":"wide"} -->
-		<h1 class="wp-block-heading alignwide has-text-align-center">Never let your memories greater than your dreams</h1>
-		<!-- /wp:heading -->
+<!-- wp:cover {"url":"<?php echo esc_url( AQUILA_BUILD_IMG_URI . '/patterns/cover.png' ) ?>","id":3854,"minHeight":640,"align":"full","className":"aquila-cover"} -->
+<div class="wp-block-cover alignfull has-background-dim aquila-cover" style="background-image:url(<?php echo esc_url( AQUILA_BUILD_IMG_URI . '/patterns/cover.png' ) ?>);min-height:640px"><div class="wp-block-cover__inner-container"><!-- wp:heading {"align":"center","level":1} -->
+        <h1 class="has-text-align-center"><strong>Never let your memories be greater than your dreams</strong></h1>
+        <!-- /wp:heading -->
 
-		<!-- wp:heading {"textAlign":"center","level":5,"textColor":"cyan-bluish-gray"} -->
-		<h5 class="wp-block-heading has-text-align-center has-cyan-bluish-gray-color has-text-color">A mind that is stretched by new experience can never go back to its old dimensions.</h5>
-		<!-- /wp:heading -->
+        <!-- wp:paragraph {"align":"center","textColor":"cyan-bluish-gray"} -->
+        <p class="has-text-align-center has-cyan-bluish-gray-color has-text-color">A mind that is stretched by a new experience can never go back to its old dimensions.</p>
+        <!-- /wp:paragraph -->
 
-		<!-- wp:buttons {"layout":{"type":"flex","verticalAlignment":"top","justifyContent":"center"}} -->
-		<div class="wp-block-buttons"><!-- wp:button {"textAlign":"center","backgroundColor":"cyan-bluish-gray","textColor":"white","style":{"border":{"radius":"25px"}},"className":"is-style-outline"} -->
-			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-white-color has-cyan-bluish-gray-background-color has-text-color has-background has-text-align-center wp-element-button" style="border-radius:25px">Blogs</a></div>
-			<!-- /wp:button --></div>
-		<!-- /wp:buttons --></div></div>
+        <!-- wp:buttons {"align":"center"} -->
+        <div class="wp-block-buttons aligncenter"><!-- wp:button {"textColor":"cyan-bluish-gray","className":"is-style-outline"} -->
+            <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-cyan-bluish-gray-color has-text-color">Blogs</a></div>
+            <!-- /wp:button --></div>
+        <!-- /wp:buttons --></div></div>
 <!-- /wp:cover -->

@@ -4,3 +4,7 @@ console.warn('Hello People!!!');
 // Styles
 import '../sass/main.scss';
 import './clock';
+
+// Images
+
+import '../img/patterns/cover.png';

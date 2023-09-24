@@ -45,6 +45,21 @@ class Block_Patterns {
 					'content' => $cover_content
 				]
 			);
+
+			/**
+			 * Two Column Pattern
+			 */
+			$two_columns_content = $this->get_pattern_content( 'template-parts/patterns/two-columns' );
+
+			register_block_pattern(
+				'aquila/two-columns',
+				[
+					'title' => __( 'Aquila Two Column', 'aquila' ),
+					'description' => __( 'Aquila two columns with heading and text', 'aquila' ),
+					'categories' => [ 'columns' ],
+					'content' => $two_columns_content,
+				]
+			);
 		}
 	}
 	public function get_pattern_content($template_path){
