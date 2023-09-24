@@ -9,6 +9,8 @@ const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin'); // https://webpack.js.org/plugins/copy-webpack-plugin/
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+
 
 // JS Directory path.
 const JS_DIR = path.resolve( __dirname, 'src/js' );
@@ -19,7 +21,8 @@ const BUILD_DIR = path.resolve( __dirname, 'build' );
 const entry = {
     main: JS_DIR + '/main.js',
     single: JS_DIR + '/single.js',
-    editor: JS_DIR + '/editor.js'
+    editor: JS_DIR + '/editor.js',
+    blocks: JS_DIR + '/editor.js'
 };
 
 const output = {
@@ -43,6 +46,10 @@ const plugins = ( argv ) => [
         patterns: [
             { from: LIB_DIR, to: BUILD_DIR + '/library' }
         ]
+    } ),
+    new DependencyExtractionWebpackPlugin( {
+        injectPolyfill: true,
+        combineAssets: true,
     } ),
 ];
 
