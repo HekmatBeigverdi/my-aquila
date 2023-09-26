@@ -25,7 +25,7 @@ class Assets {
 		 */
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
-		add_action( 'enqueue_block_assets', [ $this, 'enqueue_editor_assets' ] );
+		add_action( 'init', [ $this, 'enqueue_editor_assets' ] );
 	}
 
 	public function register_styles(): void {
@@ -47,23 +47,26 @@ class Assets {
 		wp_enqueue_script( 'main-js' );
 		wp_enqueue_script( 'bootstrap-js' );
 	}
-	public function enqueue_editor_assets(): void {
-		$asset_config_file = sprintf('%s/assets.php', AQUILA_BUILD_PATH);
+	/**
+	 * Enqueue editor scripts and styles.
+	 */
+	public function enqueue_editor_assets() : void {
 
-		if (! file_exists($asset_config_file)){
+		$asset_config_file = sprintf( '%s/assets.php', AQUILA_BUILD_PATH );
+
+		if ( ! file_exists( $asset_config_file ) ) {
 			return;
 		}
 
-		$asset_config  = require_once $asset_config_file;
+		$asset_config = require_once $asset_config_file;
 
-
-		if (empty($asset_config['js/editor.js'])){
+		if ( empty( $asset_config['js/editor.js'] ) ) {
 			return;
 		}
 
-		$editor_asset = $asset_config['js/editor.js'];
-		$js_dependencies = (!empty($editor_asset['dependencies'])) ? $editor_asset['dependencies'] : [];
-		$version = (!empty($editor_asset['version'])) ? $editor_asset['version'] : filemtime($asset_config_file);
+		$editor_asset    = $asset_config['js/editor.js'];
+		$js_dependencies = ( ! empty( $editor_asset['dependencies'] ) ) ? $editor_asset['dependencies'] : [];
+		$version         = ( ! empty( $editor_asset['version'] ) ) ? $editor_asset['version'] : filemtime( $asset_config_file );
 
 		// Theme Gutenberg blocks JS.
 		if ( is_admin() ) {

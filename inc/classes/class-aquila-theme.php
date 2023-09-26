@@ -21,16 +21,17 @@ class AQUILA_THEME {
 		Meta_Boxes::get_instance();
 		Sidebars::get_instance();
 		Block_Patterns::get_instance();
+		Blocks::get_instance();
 
 		$this->setup_hooks();
 	}
 
-	protected function setup_hooks() {
+	protected function setup_hooks(): void {
 		// actions and filters
 		add_action('after_setup_theme', [ $this, 'setup_theme']);
 
 	}
-	public function setup_theme(){
+	public function setup_theme() : void{
 		add_theme_support('title-tag');
 		add_theme_support('custom-logo',[
 			'header-text'          =>  ['site-title', 'site-description'],
