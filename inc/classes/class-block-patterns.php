@@ -18,31 +18,30 @@ class Block_Patterns {
 		$this->setup_hooks();
 	}
 
-	protected function setup_hooks(): void {
+	protected function setup_hooks() {
 
 		/**
 		 * Actions.
 		 */
 		add_action( 'init', [ $this, 'register_block_patterns' ] );
 		add_action( 'init', [ $this, 'register_block_pattern_categories' ] );
-
 	}
 
-	public function register_block_patterns(): void {
-		if ( function_exists('register_block_pattern')){
+	public function register_block_patterns() {
+		if ( function_exists( 'register_block_pattern' ) ) {
 
 			/**
-			 * Cover pattern
+			 * Cover Pattern
 			 */
-			$cover_content = $this->get_pattern_content('template-parts/patterns/cover');
+			$cover_content = $this->get_pattern_content( 'template-parts/patterns/cover' );
 
 			register_block_pattern(
 				'aquila/cover',
 				[
-					'title' => __('Aquila Cover', 'aquila'),
-					'description' => __('Aquila Cover Block with image and text', 'aquila'),
-					'categories'=> ['cover'],
-					'content' => $cover_content
+					'title' => __( 'Aquila Cover', 'aquila' ),
+					'description' => __( 'Aquila Cover Block with image and text', 'aquila' ),
+					'categories' => [ 'cover' ],
+					'content' => $cover_content,
 				]
 			);
 
@@ -62,10 +61,12 @@ class Block_Patterns {
 			);
 		}
 	}
-	public function get_pattern_content($template_path){
+
+	public function get_pattern_content( $template_path ): bool|string {
+
 		ob_start();
 
-		get_template_part($template_path);
+		get_template_part( $template_path );
 
 		$pattern_content = ob_get_contents();
 
@@ -74,7 +75,7 @@ class Block_Patterns {
 		return $pattern_content;
 	}
 
-	public function register_block_pattern_categories() {
+	public function register_block_pattern_categories(): void {
 
 		$pattern_categories = [
 			'cover' => __( 'Cover', 'aquila' ),
@@ -90,8 +91,6 @@ class Block_Patterns {
 			}
 		}
 	}
-
-
 
 
 }

@@ -2,6 +2,155 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/gutenberg/blocks/dos-and-donts/edit.js":
+/*!*******************************************************!*\
+  !*** ./src/js/gutenberg/blocks/dos-and-donts/edit.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _templates__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./templates */ "./src/js/gutenberg/blocks/dos-and-donts/templates.js");
+/**
+ * WordPress Dependencies.
+ */
+
+
+var INNER_BLOCKS_TEMPLATE = [['core/group', {
+  className: 'aquila-dos-and-donts__group',
+  backgroundColor: 'pale-cyan-blue'
+}, _templates__WEBPACK_IMPORTED_MODULE_1__.blockColumns]];
+var ALLOWED_BLOCKS = ['core/group'];
+
+/**
+ * Edit function.
+ *
+ * @return {Object} Content.
+ */
+var Edit = function Edit() {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "aquila-dos-and-donts"
+  }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks, {
+    template: INNER_BLOCKS_TEMPLATE,
+    allowedBlocks: ALLOWED_BLOCKS,
+    templateLock: true
+  }));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Edit);
+
+/***/ }),
+
+/***/ "./src/js/gutenberg/blocks/dos-and-donts/index.js":
+/*!********************************************************!*\
+  !*** ./src/js/gutenberg/blocks/dos-and-donts/index.js ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/js/gutenberg/blocks/dos-and-donts/edit.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Dos and don'ts block.
+ *
+ * @package
+ */
+
+/**
+ * Internal dependencies.
+ */
+
+
+/**
+ * WordPress Dependencies.
+ */
+
+
+
+
+/**
+ * Register block type.
+ */
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.registerBlockType)('aquila-blocks/dos-and-donts', {
+  /**
+   * Block title.
+   *
+   * @type {string}
+   */
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Dos and dont's", 'aquila'),
+  /**
+   * Block icon.
+   *
+   * @type {string}
+   */
+  icon: 'editor-table',
+  /**
+   * Block description.
+   *
+   * @type {string}
+   */
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add headings and text', 'aquila'),
+  /**
+   * Block category.
+   *
+   * @type {string}
+   */
+  category: 'aquila',
+  edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
+  /**
+   * Save
+   *
+   * @return {Object} Save content.
+   */
+  save: function save() {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "aquila-dos-and-donts"
+    }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
+  }
+});
+
+/***/ }),
+
+/***/ "./src/js/gutenberg/blocks/dos-and-donts/templates.js":
+/*!************************************************************!*\
+  !*** ./src/js/gutenberg/blocks/dos-and-donts/templates.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   blockColumns: function() { return /* binding */ blockColumns; }
+/* harmony export */ });
+/**
+ *  Get Block Column.
+ *
+ * @param {String} optionVal Option
+ * @param {String} colClassName ClassName
+ * @param {String} heading Heading
+ * @return {Array} Block column.
+ */
+var getBlockColumn = function getBlockColumn(optionVal, colClassName, heading) {
+  return ['core/column', {
+    className: colClassName
+  }, [['aquila-blocks/heading', {
+    className: 'aquila-dos-and-donts__heading',
+    option: optionVal,
+    content: "<strong><span>".concat(heading, "</span></strong>")
+  }], ['core/list', {
+    className: 'aquila-dos-and-donts__list'
+  }]]];
+};
+var blockColumns = [['core/columns', {
+  className: 'aquila-dos-and-donts__cols'
+}, [getBlockColumn('dos', 'aquila-dos-and-donts__col-one', 'Dos'), getBlockColumn('donts', 'aquila-dos-and-donts__col-two', "Dont's")]]];
+
+/***/ }),
+
 /***/ "./src/js/gutenberg/blocks/heading-with-icon/edit.js":
 /*!***********************************************************!*\
   !*** ./src/js/gutenberg/blocks/heading-with-icon/edit.js ***!
@@ -455,9 +604,11 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_blocks_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/blocks.scss */ "./src/sass/blocks.scss");
 /* harmony import */ var _gutenberg_blocks_heading_with_icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gutenberg/blocks/heading-with-icon */ "./src/js/gutenberg/blocks/heading-with-icon/index.js");
+/* harmony import */ var _gutenberg_blocks_dos_and_donts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gutenberg/blocks/dos-and-donts */ "./src/js/gutenberg/blocks/dos-and-donts/index.js");
 
 
 // Blocks
+
 
 
 }();
