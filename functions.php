@@ -56,6 +56,12 @@ function aquila_get_theme_instance() {
 
 aquila_get_theme_instance();
 
+//$my_post = get_post(1833);
+//$parsed_blocks = parse_blocks($my_post->post_content);
+//echo '<prev>';
+//print_r($parsed_blocks);
+//wp_die();
+
 function ebayads_remove_block_styles(){
 	wp_enqueue_style('wp-block-library');
 	wp_enqueue_style('wp-block-library-theme');
