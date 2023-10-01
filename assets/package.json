@@ -10,7 +10,7 @@
     "svg": "svgr -d src/js/icons src/icons",
     "lint": "eslint src/js/*",
     "lint:fix": "eslint --fix src/js/*",
-    "lint-css": "stylelint \"src/sass/**/*.scss\"",
+    "lint-css": "stylelint 'src/sass/**/*.scss'",
     "lint-css:fix": "npm run lint-css -- --fix",
     "precommit": "npm run lint-css:fix && npm run lint:fix && npm run prod"
 
