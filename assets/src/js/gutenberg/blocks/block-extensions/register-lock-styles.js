@@ -1,27 +1,77 @@
-/*
-    Register Block Styles
+/**
+ * Register block styles.
+ *
+ * @package
  */
 
-import { registerBlockStyle} from "@wordpress/blocks";
-import { __ } from "@wordpress/i18n";
+/**
+ * WordPress dependencies.
+ */
+import { registerBlockStyle, unregisterBlockStyle } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 
-const layoutStyleButton =[
+/**
+ * Quote Block styles.
+ *
+ * @type {Array}
+ */
+const layoutStyleQuote = [
+    {
+        name: 'layout-dark-background',
+        label: __( 'Layout style dark background', 'aquila' ),
+    },
+];
+
+/**
+ * Button Media styles.
+ *
+ * @type {Array}
+ */
+const layoutStyleButton = [
     {
         name: 'layout-border-blue-fill',
-        label: __('Blue Outline', 'aquila')
+        label: __( 'Blue outline', 'aquila' ),
     },
     {
         name: 'layout-border-white-no-fill',
-        label: __('White Outline - to be used with dark background', 'aquila')
+        label: __(
+            'White outline - to be used with dark background',
+            'aquila'
+        ),
     },
-]
+];
 
-const register= () =>{
-    layoutStyleButton.forEach( layoutStyle => registerBlockStyle('core/button', layoutStyle))
-}
 /**
- * Register Style on dom ready
+ * Deregister styles.
+ *
+ * @return {void}
  */
-wp.domReady(()=>{
+const deRegister = () => {
+    console.warn("Deregister Block Style");
+    unregisterBlockStyle( 'core/quote', 'large' );
+    unregisterBlockStyle( 'core/button', 'outline' );
+};
+
+/**
+ * Register styles.
+ *
+ * @return {void}
+ */
+const register = () => {
+    layoutStyleQuote.forEach( ( layoutStyle ) =>
+        registerBlockStyle( 'core/quote', layoutStyle )
+    );
+
+    layoutStyleButton.forEach( ( layoutStyle ) =>
+        registerBlockStyle( 'core/button', layoutStyle )
+    );
+};
+
+
+/**
+ * Register and unregister styles on dom ready.
+ */
+wp.domReady( () => {
+    deRegister();
     register();
-})
+} );
