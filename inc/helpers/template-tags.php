@@ -63,7 +63,12 @@ function aquila_posted_by(){
 }
 
 function aquila_the_excerpt($trim_character_count = 0){
-	if (! has_excerpt() || 0 === $trim_character_count){
+
+	$post_ID = get_the_ID();
+	if (empty($post_ID)){
+		return null;
+	}
+	if ( has_excerpt() || 0 === $trim_character_count){
 		print_r('excerpt null');
 		the_excerpt();
 		return;

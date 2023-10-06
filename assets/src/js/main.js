@@ -14,4 +14,6 @@ import '../img/slider/slider3.png';
 
 
 
-import './carousel'
+import './carousel';
+
+import './posts/loadmore';
