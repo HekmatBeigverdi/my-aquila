@@ -90,7 +90,7 @@ function aquila_excerpt_more($more = ''){
 
 	return $more;
 }
-function aquila_pagination(){
+function aquila_pagination(): void {
 
 	$args = [
 		'before_page_number' => '<span class="btn border border-secondary mr-2 mb-2">',

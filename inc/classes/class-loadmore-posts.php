@@ -64,6 +64,7 @@ class Loadmore_Posts {
 		$args = [
 			'post_type'      => 'post',
 			'post_status'    => 'publish',
+			'post__not_in' => get_option("sticky_posts"),
 			'posts_per_page' => 6, // Number of posts per page - default
 			'paged'          => $page_no,
 		];
