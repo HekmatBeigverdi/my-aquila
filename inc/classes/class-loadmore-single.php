@@ -138,7 +138,10 @@ class Loadmore_Single {
 			'paged'            => $page_no,
 			'starting_post_id' => intval( $single_post_id ),
 		];
-
+//        $query = new WP_Query( $args );
+//        echo '<prev>';
+//        print_r($query->max_num_pages);
+//        wp_die();
 		return new WP_Query( $args );
 	}
 
