@@ -26,36 +26,39 @@ function get_the_post_custom_thumbnail($post_id, $size= 'featured-thumbnail', $a
 }
 
 
-function the_post_custom_thumbnail($post_id, $size= 'featured-thumbnail', $additional_attributes =[]) {
+function the_post_custom_thumbnail($post_id, $size= 'featured-thumbnail', $additional_attributes =[]): void {
     echo get_the_post_thumbnail($post_id, $size, $additional_attributes);
 }
 
-function aquila_posted_on(){
+function aquila_posted_on(): void {
+
+	$year                        = get_the_date( 'Y' );
+	$month                       = get_the_date( 'n' );
+	$day                         = get_the_date( 'j' );
+	$post_date_archive_permalink = get_day_link( $year, $month, $day );
+
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
-	//Post is modified
-	if (get_the_time('U') !== get_the_modified_time('U')){
+	// Post is modified ( when post published time is not equal to post modified time )
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 	}
 
-	$time_string = sprintf(
-
-		$time_string,
-		esc_attr(get_the_date( DATE_W3C)),
-		esc_attr(get_the_date()),
-		esc_attr(get_the_modified_date( DATE_W3C)),
-		esc_attr(get_the_modified_date()),
-
+	$time_string = sprintf( $time_string,
+		esc_attr( get_the_date( DATE_W3C ) ),
+		esc_attr( get_the_date() ),
+		esc_attr( get_the_modified_date( DATE_W3C ) ),
+		esc_attr( get_the_modified_date() )
 	);
 
 	$posted_on = sprintf(
-		esc_html_x('Posted on %s', 'post date', 'aquila'),
-		'<a href="' . esc_url(get_permalink()) . '" rel="bookmark">' . $time_string . '</a>'
+		esc_html_x( 'Posted on %s', 'post date', 'aquila' ),
+		'<a href="' . esc_url( $post_date_archive_permalink ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	echo '<span class="posted-on text-secondary">' . $posted_on . '</span>';
 }
-function aquila_posted_by(){
+function aquila_posted_by(): void {
 	$byline = sprintf(
 		esc_html_x('by %s', 'post author', 'aquila'),
 		'<span class="author vcard"><a href="' . esc_url(get_author_posts_url( get_the_author_meta('ID'))) .'">' . esc_html( get_the_author()). '</a></span>'
@@ -112,7 +115,7 @@ function aquila_pagination(): void {
 	printf('<nav class="aquila-pagination clearfix">%s</nav>', wp_kses( paginate_links( $args), $allowed_tags));
 }
 
-function aquila_has_gravatar( $user_email ) {
+function aquila_has_gravatar( $user_email ): bool|int {
 
 	$gravatar_url = get_avatar_url( $user_email );
 
@@ -128,7 +131,7 @@ function aquila_has_gravatar( $user_email ) {
 	// If request status is 200, which means user has uploaded the avatar on gravatar site
 	return preg_match( "|200|", $headers[0] );
 }
-function aquila_is_uploaded_via_wp_admin( $gravatar_url ) {
+function aquila_is_uploaded_via_wp_admin( $gravatar_url ): bool {
 
 	$parsed_url = wp_parse_url( $gravatar_url );
 
@@ -137,4 +140,51 @@ function aquila_is_uploaded_via_wp_admin( $gravatar_url ) {
 	// If query args is empty means, user has uploaded gravatar.
 	return empty( $query_args );
 
+}
+function aquila_the_post_pagination( $current_page_no, $posts_per_page, $article_query, $first_page_url, $last_page_url, bool $is_query_param_structure = true ): void {
+	$prev_posts = ( $current_page_no - 1 ) * $posts_per_page;
+	$from       = 1 + $prev_posts;
+	$to         = count( $article_query->posts ) + $prev_posts;
+	$of         = $article_query->found_posts;
+	$total_pages = $article_query->max_num_pages;
+
+	$base = ! empty( $is_query_param_structure ) ? add_query_arg( 'page', '%#%' ) :  get_pagenum_link( 1 ) . '%_%';
+	$format = ! empty( $is_query_param_structure ) ? '?page=%#%' : 'page/%#%';
+
+	?>
+	<div class="mt-0 md:mt-10 mb-10 lg:my-5 flex items-center justify-end posts-navigation">
+		<?php
+		if ( 1 < $total_pages && !empty( $first_page_url ) ) {
+			printf(
+				'<span class="mr-2">Showing %1$s - %2$s Of %3$s</span>',
+				$from,
+				$to,
+				$of
+			);
+		}
+
+
+		// First Page
+		if ( 1 !== $current_page_no && ! empty( $first_page_url ) ) {
+			printf( '<a class="first-pagination-link btn border border-secondary mr-2" href="%1$s" title="first-pagination-link">%2$s</a>', esc_url( $first_page_url ), __( 'First', 'aquila' ) );
+		}
+
+		echo paginate_links( [
+			'base'      => $base,
+			'format'    => $format,
+			'current'   => $current_page_no,
+			'total'     => $total_pages,
+			'prev_text' => __( 'Prev', 'aquila' ),
+			'next_text' => __( 'Next', 'aquila' ),
+		] );
+
+		// Last Page
+		if ( $current_page_no < $total_pages && !empty( $last_page_url ) ) {
+
+			printf( '<a class="last-pagination-link btn border border-secondary ml-2" href="%1$s" title="last-pagination-link">%2$s</a>', esc_url( $last_page_url ), __( 'Last', 'aquila' ) );
+		}
+
+		?>
+	</div>
+	<?php
 }
