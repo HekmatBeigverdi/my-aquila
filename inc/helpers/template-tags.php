@@ -1,6 +1,7 @@
 <?php
 
-function get_the_post_custom_thumbnail($post_id, $size= 'featured-thumbnail', $additional_attributes =[]){
+
+function get_the_post_custom_thumbnail($post_id, $size= 'featured-thumbnail', $additional_attributes =[]): string {
     $custom_thumbnail = '';
 
     if (null === $post_id){
@@ -38,6 +39,7 @@ function aquila_posted_on(){
 	}
 
 	$time_string = sprintf(
+
 		$time_string,
 		esc_attr(get_the_date( DATE_W3C)),
 		esc_attr(get_the_date()),
@@ -108,4 +110,31 @@ function aquila_pagination(): void {
 		]
 	];
 	printf('<nav class="aquila-pagination clearfix">%s</nav>', wp_kses( paginate_links( $args), $allowed_tags));
+}
+
+function aquila_has_gravatar( $user_email ) {
+
+	$gravatar_url = get_avatar_url( $user_email );
+
+	if ( aquila_is_uploaded_via_wp_admin( $gravatar_url ) ) {
+		return true;
+	}
+
+	$gravatar_url = sprintf( '%s&d=404', $gravatar_url );
+
+	// Make a request to $gravatar_url and get the header
+	$headers = @get_headers( $gravatar_url );
+
+	// If request status is 200, which means user has uploaded the avatar on gravatar site
+	return preg_match( "|200|", $headers[0] );
+}
+function aquila_is_uploaded_via_wp_admin( $gravatar_url ) {
+
+	$parsed_url = wp_parse_url( $gravatar_url );
+
+	$query_args = ! empty( $parsed_url['query'] ) ? $parsed_url['query'] : '';
+
+	// If query args is empty means, user has uploaded gravatar.
+	return empty( $query_args );
+
 }
