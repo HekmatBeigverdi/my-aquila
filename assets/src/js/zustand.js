@@ -1,11 +1,11 @@
-import { persistent } from 'zustand/middleware';
-import create from 'zustand/vanila';
+import { persist } from 'zustand/middleware';
+import create from 'zustand/vanilla';
 
 const stores = [];
-const zustand ={
-    persistent,
+const zustand = {
+    persist,
     create,
-    stores
+    stores,
 };
 
 window.zustand = zustand;
